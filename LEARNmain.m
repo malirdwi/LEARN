@@ -167,7 +167,7 @@ fprintf(file,'The parition matrix H is set to the default choice H=the stoichiom
     if auto==0
    [C,cvx,H2]=ConstructLP(G);
     elseif auto==1
-        C=[];
+[C,cvx,H2]=ConstructLPAuto(G);
     end
    
    if cvx==1 || length(C)==0
@@ -194,4 +194,3 @@ end
 
 fprintf(file,'THE END.\n')
  
-
