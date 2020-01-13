@@ -133,7 +133,7 @@ variable L2(m,ne,m)
  
 subject to 
 uy=[ 1:m/2     ]; 
-uy=[uy m+1-wrev(uy)];
+uy=[uy m+1-flip(uy)];
 Q(uy,r0).*C(uy,r0)>=0;  
 % 
 for j=uy
