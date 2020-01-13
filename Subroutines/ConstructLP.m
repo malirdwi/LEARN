@@ -145,7 +145,7 @@ end
 
 for j=1:m
      ex=[       ];
-   ex=[ex wrev(m+1-ex)];
+   ex=[ex flip(m+1-ex)];
      Z2(:,ex)=0*Z2(:,ex);
      Z2(ex,:)=0*Z2(ex,:);
      
