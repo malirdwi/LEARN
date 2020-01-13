@@ -2,31 +2,38 @@ function coeff = coeffP(vec,k)
 
  
 
-p = length(vec);
+[m, n] = size(vec);
 
  
- 
-if p == k
+
+if n == 1
+   p = m;
+   ff = 1;
+else
+   ff = 0;
+end
+
+if n == k
    coeff = vec(:).';
-elseif p == k + 1
+elseif n == k + 1
    tt = vec(:).';
-   coeff   = tt(ones(p,1),:);
-   coeff(1:p+1:p*p) = [];
-   coeff = reshape(coeff,p,p-1);
+   coeff   = tt(ones(n,1),:);
+   coeff(1:n+1:n*n) = [];
+   coeff = reshape(coeff,n,n-1);
 elseif k == 1
    coeff = vec(:);
-elseif   (k > 3 || p-k < 4) && p < 17
-   rr = 2.^(p);
+elseif   (k > 3 || n-k < 4) && n < 17
+   rr = 2.^(n);
    nc = rr;
 
-   for ct = 1:p
+   for ct = 1:n
       ss = (0:1);
       nc = nc/2;
       nrp = rr./(2*nc);
       ss = ss(ones(1,nrp),:);
       ss = ss(:);
       ss = ss(:,ones(1,nc));
-      x(:,p-ct+1) = ss(:);
+      x(:,n-ct+1) = ss(:);
    end
 
    index = x(sum(x,2) == k,:);
@@ -35,12 +42,12 @@ elseif   (k > 3 || p-k < 4) && p < 17
    coeff = reshape(vec(rr),k,nr).';
 else 
    X = zeros(1,0); % want 1 row even for k=0
- 
+   if n == 1,
       vec = vec.';
-  
-   if k < p && k > 1
-      for index = 1:p-k+1
-         Y = coeff3(vec(index+1:p),k-1);
+   end
+   if k < n && k > 1
+      for index = 1:n-k+1
+         Y = coeffP(vec(index+1:n),k-1);
          X = [X; [vec(ones(size(Y,1),1),index) Y]];
       end
    end
