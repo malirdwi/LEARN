@@ -19,7 +19,7 @@ minimize(sum(x))
 x>=ones(size(G,2),1)
 cvx_end
 
-if(min(v)>0)
+if(min(x)>0)
 else
-v=0;
+x=0;
 end
