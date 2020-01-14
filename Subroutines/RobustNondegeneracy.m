@@ -1,14 +1,7 @@
 
 function flag=RobustNondegeneracy(G)
-   G=[-1  1  0  0  0  0  0 0 ;
-      0 -1  1  0  0  0  0 0; 
-      0  0 -1  1  0  0  0 0 ;
-      1  0  0 -1  1  0  0 -1;
-      0  0  0  0 -1  1  0 0 ;
-      0  0  0  0  0 -1  1 0;
-      0  0  0  0  0  0 -1 1 ; 
-      1 -1  0  0  0  0  0 0 ;
-      0  0  0  0  1 -1  0 0];
+checkToolbox
+
 
 [n,r]=size(G);
 oldparam = sympref('HeavisideAtOrigin',0);
