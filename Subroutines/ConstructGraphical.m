@@ -18,7 +18,7 @@ for i=1:n
 end
 
 for j=r2-(r-r2)+1:r2
-    In=find(G2(:,j)>0);
+    In=find(G2(:,j)>0)';
     for i=In
         
     if(length(find(G2(i,:)>0))>1)
