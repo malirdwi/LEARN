@@ -1,4 +1,5 @@
 function flag=checkPmatrix(varargin)
+checkToolbox
 if nargin==1
 G=varargin{1};
 oldparam = sympref('HeavisideAtOrigin',0);
