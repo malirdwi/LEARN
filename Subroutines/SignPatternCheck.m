@@ -122,8 +122,13 @@ end
     
     Q=C;
  x=1;
+ 
+ if(length(find(Q==Inf))==0)
 if(max(min(C').*max(C'))>=0)
     x=0;
+    return;
 end
-
+ end
+ 
+ 
 
