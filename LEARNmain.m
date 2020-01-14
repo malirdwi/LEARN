@@ -182,8 +182,8 @@ fprintf(file,'The parition matrix H is set to the default choice H=the stoichiom
          H
    end
 
-       
-  
+else
+    fprintf(file,'This method for constructing a PWL RLF has failed.\n')
 end
 
 
