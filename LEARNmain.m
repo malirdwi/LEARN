@@ -1,5 +1,6 @@
 function LEARN(varargin)
 addpath('./Subroutines');
+checkToolbox
 file=1;
 if nargin==1
     auto=0;
