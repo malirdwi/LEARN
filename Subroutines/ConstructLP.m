@@ -1,4 +1,5 @@
 function [Q,cvx,H2,Xi]=ConstructLP(G,varargin)
+checkToolbox
 if nargin>1
 H2=varargin{1};
 else
