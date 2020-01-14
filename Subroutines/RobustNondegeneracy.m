@@ -26,6 +26,8 @@ Jr=J(1:n-d,1:n-d);
 
 flag=n-d-rank(Jr);
 
+flag=1-flag;
+
 
 
 
