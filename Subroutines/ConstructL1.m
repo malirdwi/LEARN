@@ -1,6 +1,6 @@
 function [Q,Xi]=ConstructL1(G,H2)
 
-    
+    checkToolbox
 
 
     w=1;
