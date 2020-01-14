@@ -1,4 +1,5 @@
 function PrintResult2(C,G,conservative,siphons,file)
+checkToolbox
  if(length(C)==0)
          fprintf(file,'This method for constructing a PWL RLF has failed.\n')
     else
