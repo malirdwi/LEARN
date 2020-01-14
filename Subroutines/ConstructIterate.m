@@ -1,4 +1,5 @@
 function [C]=ConstructIterate(varargin)
+checkToolbox
 if nargin==1
 G=varargin{1};
 auto=0;
