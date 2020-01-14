@@ -1,11 +1,11 @@
-function [optim,symmath]=checkToolbox
+function checkToolbox
 
 v = ver;
-optim = any(strcmp(cellstr(char(v.Name)), 'Optimization Toolbox'))
+optim = any(strcmp(cellstr(char(v.Name)), 'Optimization Toolbox'));
 if optim==0
-error('Optimization Toolbox is missing. Please install it first')
+error('Optimization Toolbox is missing. Please install it before running this subroutine');
 end
-symmath = any(strcmp(cellstr(char(v.Name)), 'Symbolic Math Toolbox'))
+symmath = any(strcmp(cellstr(char(v.Name)), 'Symbolic Math Toolbox'));
 if symmath==0
-error('Symbolic Math Toolbox is missing. Please install it first')
+error('Symbolic Math Toolbox is missing. Please install it before running this subroutine');
 end
