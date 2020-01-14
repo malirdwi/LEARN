@@ -14,7 +14,7 @@ f=0;
 while(f==0)
 I=rand(n);
 
-T=[I(:,1:n-d)'; V]
+T=[I(:,1:n-d)'; V];
 if(rank(T)==n)
     f=1;
 end
@@ -25,6 +25,9 @@ J=T*rho*inv(T);
 Jr=J(1:n-d,1:n-d);
 
 flag=n-d-rank(Jr);
+
+
+
 
 
 
