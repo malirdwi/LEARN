@@ -1,4 +1,4 @@
-function [Q,x]=SignPattern(varargin)
+function [x,Q]=SignPattern(varargin)
 checkToolbox
 if nargin==1
 G=varargin{1};
