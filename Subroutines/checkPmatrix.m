@@ -28,7 +28,7 @@ J=-G*rho;
 n=size(J,1);
 for j=1:n
     
-    Comb=combnk(1:n,j);
+    Comb=coeffP(1:n,j);
     m=size(Comb,1);
     
     for k=1:m
