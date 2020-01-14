@@ -10,7 +10,7 @@ function PrintResult2(C,G,conservative,siphons,file)
        fprintf(file,'\n')
        
        f3=RobustNondegeneracy(G);
-       if(f3==0)
+       if(f3==1)
             
            if conservative==1 && siphons==0
                fprintf(file,'The robust non-degeneracy test is passed. \n Since the network is conservative and with no critical sihpons then the following holds: \n There exists a unique postive globally asymptotically stable steady state  in each stoichiometric class.\n')
