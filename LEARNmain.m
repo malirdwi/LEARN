@@ -99,9 +99,9 @@ end
 
 fprintf(file,'Necessary Condition # 2 ....\n');
 if auto==0
-[Q,n1]=SignPatternCheck(G);
+[n1,Q]=SignPatternCheck(G);
 elseif auto==1
-   [Q,n1]=SignPatternCheck(A,B);
+   [n1,Q]=SignPatternCheck(A,B);
 end 
 
 if(n1==1)
