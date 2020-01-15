@@ -178,12 +178,12 @@ fprintf(file,'The parition matrix H is set to the default choice H=the stoichiom
     end
    
    if cvx==1 || length(C)==0
-       PrintResult(C,G,conservative,siphons,file);
+       PrintResult(round(C,5),G,conservative,siphons,file);
    else
     fprintf(file,'SUCCESS!! A non-convex PWL RLF has been found .. \n') ;   
     fprintf(file,'The set of steady states is Lyapunov stable .. \n')  ;
         fprintf(file,'The coefficient matrix is given as follows .. \n') ;  
-        PrintMatrix(C,file);
+        PrintMatrix(round(C,5),file);
          fprintf(file,'The parititon matrix is given as follows .. \n') ;
          H
    end
