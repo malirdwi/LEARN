@@ -7,7 +7,11 @@ elseif nargin==2
     A=varargin{1};
     B=varargin{2};
     G=B-A;
-    auto=1;
+    if(max(max(abs(A.*B)))>0)%check if non-autocatalytic
+        auto=1;
+     else
+         auto=0;
+     end
 else
         error('Error: Wrong Number of Arguments');
         return;
