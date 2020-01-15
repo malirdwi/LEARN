@@ -1,6 +1,6 @@
-function PrintResult2(C,G,conservative,siphons,file)
+function PrintResult(C,G,conservative,siphons,file)
  if(length(C)==0)
-         fprintf(file,'This method for constructing a PWL RLF has failed.\n')
+         fprintf(file,'This method for constructing a PWL RLF is inconclusive.\n')
     else
        fprintf(file,'Success!! A PWL RLF has been found.\n')
         
