@@ -1,22 +1,26 @@
 function [Q,cvx,H2,Xi]=ConstructLPAuto(A,B,varargin)
  if nargin>2
-H2=varargin{3};
+H2=varargin{1};
 else
     H2=[];
 end
 if nargin>3
-w=varargin{4};
+w=varargin{2};
 else
     w=0;
 end
 
 cvx=0;
 if nargin>4
-    cvx=varargin{5};
+    cvx=varargin{3};
 end
 
 
-  
+     if(max(max(abs(A.*B)))>0)%check if non-autocatalytic
+        auto=1;
+     else
+         auto=0;
+     end
     
  
     G=B-A;
@@ -30,6 +34,10 @@ else
     return;
 end
 
+if auto==0
+    [Q,cvx,H2,Xi]=ConstructLP(G,H2,w,cvx);
+    return;
+end
  
   H=[G;H2  ];
 
@@ -103,12 +111,7 @@ s=length(find(C>0));
 q=sym('q',[s 1]);
 
  
-[Z,Z1,Zx,Z1v]=RegNbhd(S1,H);
-
-
  
-
-Z2=Z1;
   cvx_begin quiet
 variable Q(m,r)
 variable L(m,ne)
@@ -153,25 +156,18 @@ end
          Q(j,:)==-Q(m-j+1,:);  
      end
      %%%%%% continu9ety  covexity
-     ex=[       ];
-   ex=[ex wrev(m+1-ex)];
-     Z2(:,ex)=0*Z2(:,ex);
-     Z2(ex,:)=0*Z2(ex,:);
-     
+ 
  
    
    
    
     for j2=j+1:m
-        
-     
-    
-        bb=find(abs(sign(S1(j,:)-S1(j2,:)))>0);
- 
-            P=null(H(bb,:));
-             if(length(P)>0)
-             (Q(j,:)-Q(j2,:))*P==0;
-             end
+        bb=find(abs(sign(S1(j,:)-S1(j2,:)))>0); 
+          (Q(j,:)-Q(j2,:)) == L2(j2,bb,j)*diag(S1(j,bb))*H(bb,:);
+%             P=null(H(bb,:));
+%              if(length(P)>0)
+%              (Q(j,:)-Q(j2,:))*P==0;
+%              end
  
             
     end
@@ -200,8 +196,8 @@ end
 Q=full([Q])/min(abs(Q(find(abs(Q)>1e-5))));
 Q=Q(1:m/2,:);
 null(Q,'r');
-
-if length(find(L2<-1e-8))>0
+ 
+if length(find(L2<-1e-3))>0
     cvx=0;
 else
     cvx=1;
