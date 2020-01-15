@@ -88,14 +88,7 @@ s=length(find(C>0));
 q=sym('q',[s 1]);
 
  
-[Z,Z1,Zx,Z1v]=RegNbhd(S1,H);
-
-
  
- 
-
-
-Z2=Z1;
   cvx_begin quiet
 variable Q(m/2,r)
 variable L(m/2,ne)
@@ -105,10 +98,7 @@ minimize(sum(sum(abs(Q))))
  
  
 subject to
- 
- 
 Q(:,r0).*C(1:m/2,r0)>=0;  %%% to have descreasing function
-% 
 for j=1:m/2
     for l=1:r
         if(C(j,l)==0)
@@ -116,57 +106,28 @@ for j=1:m/2
         end
     end
 end 
-
  Q*V==0;  
  L>=0;
- 
 Qf=Q;
-
 if cvx==1
     L2>=0
 end
-
 Lf=[L;L];
 for j=1:m/2
-    
-
        sum(L(j,:))>=2;
 if w==1
     Q(j,:)==L(1,:)*diag(S1(j,:))*H; 
 else
    Q(j,:)== L(j,:)*diag(S1(j,:))*H; 
-end
-    
+end   
          Qf(m-j+1,:)=-Q(j,:);  
-    
-     
-     
 end
-
-
 for j=1:m
-     ex=[       ];
-   ex=[ex flip(m+1-ex)];
-     Z2(:,ex)=0*Z2(:,ex);
-     Z2(ex,:)=0*Z2(ex,:);
-     
-   
-             
-  
     for j2=j+1:m
-        
-     
-    
         bb=find(abs(sign(S1(j,:)-S1(j2,:)))>0);
-if(Z2(j,j2)==1)
-          (Qf(j,:)-Qf(j2,:)) == L2(j2,bb,j)*diag(S1(j,bb))*H(bb,:);
-end
-
-
-            
+         (Qf(j,:)-Qf(j2,:)) == L2(j2,bb,j)*diag(S1(j,bb))*H(bb,:);        
     end
     end
-
 cvx_end 
 
 
