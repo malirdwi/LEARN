@@ -115,7 +115,7 @@ variable L(m,ne)
 variable L0(m,r)
 variable L2(m,ne,m)
 
-    minimize(sum(sum(Q(1,1))))
+    minimize(sum(sum(abs(Q))))
  
  
 subject to
