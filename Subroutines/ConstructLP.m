@@ -8,7 +8,7 @@ end
 if nargin>2
 w=varargin{2};
 else
-    w=0;
+    w=1;
 end
 
 cvx=0;
@@ -16,7 +16,10 @@ if nargin>3
     cvx=varargin{3};
 end
     
-
+if w==1
+    [Q,cvx,H2,Xi]=ConstructL1(G,H2);
+    return;
+end
 
   H=[G;H2  ];
 
@@ -88,9 +91,9 @@ s=length(find(C>0));
 q=sym('q',[s 1]);
 
  
-  cvx_solver sedumi
+ cvx_solver sedumi
 
-  cvx_begin quiet
+  cvx_begin % quiet
 variable Q(m/2,r)
 variable L(m/2,ne)
 variable L2(m,ne,m)
@@ -134,10 +137,12 @@ cvx_end
 
 if sum(cvx_status)==sum('Failed')
     Q=[];
+    Xi=[];
     return;
 end
 if sum(cvx_status)==sum('Infeasible')
     Q=[];
+    Xi=[];
     return;
 end
 
