@@ -65,7 +65,7 @@ for j=1:m  %%% EXCLUDING RATES WITH MULTIPLE CONFLICTING INPUTS
                 r0=[r0 l];
             end
         else
-            C(j,l)=NaN; %%reaction with no inputs
+            C(j,l)=Inf; %%reaction with no inputs
             
             
         end
