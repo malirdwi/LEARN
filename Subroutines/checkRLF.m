@@ -3,7 +3,7 @@ checkToolbox
 file=1;
 
 fprintf(file,'--------------------------------\n');
-fprintf(file,'Welcome to LEARN v1.0, May 2019\n');
+fprintf(file,'Welcome to LEARN v1.0, Jan 2020\n');
 fprintf(file,'Developed by M. Ali Al-Radhawi malirdwi@{northeastern.edu,mit.edu,gmail.com}\n\n');
 fprintf(file,'This subroutine tries to verify if a given function is a Robust Lyapunov Function for a given reaction network.\n');
 fprintf(file,'Rarely, this subroutine faces numerical problems due to the LP solver linprog. \n');
