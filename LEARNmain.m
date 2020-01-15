@@ -169,12 +169,12 @@ end
 
 fprintf(file,'--------------------------------\n');
 fprintf(file,'Method # 3: Linear Programming Method .. \n');
-if(AS1==1 && necessary~=0)
+if(AS1==1)
 fprintf(file,'The parition matrix H is set to the default choice H=the stoichiometry matrix .. \n') ;   
     if auto==0
    [C,cvx,H2]=ConstructLP(G);
     elseif auto==1
-[C,cvx,H2]=ConstructLPAuto(G);
+[C,cvx,H2]=ConstructLPAuto(G,[],0,1);
     end
    
    if cvx==1 || length(C)==0
@@ -189,7 +189,7 @@ fprintf(file,'The parition matrix H is set to the default choice H=the stoichiom
    end
 
 else
-    fprintf(file,'This method for constructing a PWL RLF is inconclusive.\n')
+    fprintf(file,'This method for constructing a PWL RLF has failed.\n')
 end
 
 
