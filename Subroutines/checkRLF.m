@@ -1,5 +1,6 @@
 function status=checkRLF(G,C)% 
 checkToolbox
+file=1;
 
 fprintf(file,'--------------------------------\n');
 fprintf(file,'Welcome to LEARN v1.0, May 2019\n');
