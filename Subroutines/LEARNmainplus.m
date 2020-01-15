@@ -131,6 +131,17 @@ else
 end
 
 necessary=siph1*Pmatrix*n1;
+
+if(necessary==0)
+    fprintf(file,'--------------------------------\n');
+fprintf(file,'A necessary condition has been violated. A PWL RLF does not exist.\n');
+x=input('If you want to continue searching enter 0, otherwise enter any number to finish= ');
+
+if(x~=0)
+    fprintf(file,'THE END.\n')
+    return;
+end
+end
 fprintf(file,'--------------------------------\n');
 fprintf(file,'LEARN will search for a PWL RLF\n');
 
@@ -171,16 +182,18 @@ fprintf(file,'The parition matrix H is set to the default choice H=the stoichiom
     elseif auto==1
 [C,cvx,H2]=ConstructLPAuto(G,[],0,0);
     end
-   
+   if cvx==0
+       cvx=checkRLF_quiet(G,round(C,6));
+   end
    if cvx==1 || length(C)==0
        PrintResult(round(C,5),G,conservative,siphons,file);
    else
-    fprintf(file,'SUCCESS!! A non-convex PWL RLF has been found .. \n') ;   
+    fprintf(file,'SUCCESS!! A continuous PWL RLF has been found .. \n') ;   
     fprintf(file,'The set of steady states is Lyapunov stable .. \n')  ;
         fprintf(file,'The coefficient matrix is given as follows .. \n') ;  
         PrintMatrix(round(C,5),file);
          fprintf(file,'The parititon matrix is given as follows .. \n') ;
-         H
+         PrintMatrix(H2,file);
    end
 
 else
