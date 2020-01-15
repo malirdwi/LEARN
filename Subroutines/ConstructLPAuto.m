@@ -1,18 +1,18 @@
 function [Q,cvx,H2,Xi]=ConstructLPAuto(A,B,varargin)
  if nargin>2
-H2=varargin{2};
+H2=varargin{3};
 else
     H2=[];
 end
 if nargin>3
-w=varargin{3};
+w=varargin{4};
 else
     w=0;
 end
 
 cvx=0;
 if nargin>4
-    cvx=varargin{4};
+    cvx=varargin{5};
 end
 
 
