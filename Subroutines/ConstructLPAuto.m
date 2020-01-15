@@ -110,7 +110,7 @@ end
 s=length(find(C>0));
 q=sym('q',[s 1]);
 
- 
+ cvx_solver sedumi
  
   cvx_begin quiet
 variable Q(m,r)
