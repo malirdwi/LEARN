@@ -26,7 +26,7 @@ C=[C;-C];
  m=length(C);
  
 status=1;
-  options = optimoptions('linprog','Display','off','Algorithm','interior-point-legacy');
+  options = optimoptions('linprog','Display','off','Algorithm','interior-point-legacy','OptimalityTolerance',1e-4);
  for j=1:m
  C1=[];
  for i=1:m
