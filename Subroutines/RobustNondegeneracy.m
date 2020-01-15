@@ -1,10 +1,24 @@
-function flag=RobustNondegeneracy(G)
+function flag=RobustNondegeneracy(varargin)
 checkToolbox
+
+if nargin==1
+G=varargin{1};
+oldparam = sympref('HeavisideAtOrigin',0);
+ A=heaviside(-G);
+B=heaviside(G);
+elseif nargin==2
+    A=varargin{1};
+    B=varargin{2};
+    G=B-A;
+else
+        error('Error: Wrong Number of Arguments');
+        return;
+end
 
 [n,r]=size(G);
 oldparam = sympref('HeavisideAtOrigin',0);
 
-rho0=heaviside(-G)'.*ones(r,n);%sym('r',[ r n]);
+rho0=A'.*ones(r,n);%sym('r',[ r n]);
 rho=G*rho0;
 
 V=null(G','r')';
