@@ -101,7 +101,7 @@ variable Q(m/2,r)
 variable L(m/2,ne)
 variable L2(m,ne,m)
 
-minimize(sum(sum(L)))
+minimize(sum(sum(abs(Q))))
  
  
 subject to
