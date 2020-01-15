@@ -1,5 +1,6 @@
+clear all;  
 addpath('..');
-clear all;   
+addpath('../Subroutines');
 
 Gamma =[
 -1 1 0 0 0 0 0 1;
