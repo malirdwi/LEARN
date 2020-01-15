@@ -196,8 +196,9 @@ if sum(cvx_status)==sum('Infeasible')
     return;
 end
 
-Q=round(Q,5);
-Q=full([Q])/min(abs(Q(find(Q))));
+ 
+Q=full([Q])/min(abs(Q(find(abs(Q)>1e-5))));
+Q=Q(1:m/2,:);
 null(Q,'r');
 
 if length(find(L2<-1e-8))>0
