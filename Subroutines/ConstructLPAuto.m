@@ -7,7 +7,7 @@ end
 if nargin>3
 w=varargin{2};
 else
-    w=0;
+    w=1;
 end
 
 cvx=0;
@@ -160,7 +160,7 @@ end
  
    
    
-   
+   if(w==0)
     for j2=j+1:m
         bb=find(abs(sign(S1(j,:)-S1(j2,:)))>0); 
           (Q(j,:)-Q(j2,:)) == L2(j2,bb,j)*diag(S1(j,bb))*H(bb,:);
@@ -171,6 +171,8 @@ end
  
             
     end
+    end
+    
 end
     
 if cvx==1
