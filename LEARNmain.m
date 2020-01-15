@@ -176,11 +176,13 @@ fprintf(file,'The parition matrix H is set to the default choice H=the stoichiom
     elseif auto==1
 [C,cvx,H2]=ConstructLPAuto(G,[],0,1);
     end
-   
+      if cvx==0
+       cvx=checkRLF_quiet(G,round(C,6));
+   end
    if cvx==1 || length(C)==0
        PrintResult(round(C,5),G,conservative,siphons,file);
    else
-    fprintf(file,'SUCCESS!! A non-convex PWL RLF has been found .. \n') ;   
+    fprintf(file,'SUCCESS!! A continuous PWL RLF has been found .. \n') ;   
     fprintf(file,'The set of steady states is Lyapunov stable .. \n')  ;
         fprintf(file,'The coefficient matrix is given as follows .. \n') ;  
         PrintMatrix(round(C,5),file);
