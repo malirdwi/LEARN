@@ -6,7 +6,7 @@ fprintf(file,'--------------------------------\n');
 fprintf(file,'Welcome to LEARN v1.0, May 2019\n');
 fprintf(file,'Developed by M. Ali Al-Radhawi malirdwi@{northeastern.edu,mit.edu,gmail.com}\n\n');
 fprintf(file,'This subroutine tries to verify if a given function is a Robust Lyapunov Function for a given reaction network.\n');
-fprintf(file,'Rarely, this subroutine faces numerical problems due to the LP solver lingprog. \n');
+fprintf(file,'Rarely, this subroutine faces numerical problems due to the LP solver linprog. \n');
 fprintf(file,'If you witness an unexpected output, please use the alternative subroutine checkRLF2 which uses cvx.\n');
 fprintf(file,'--------------------------------\n');
 
