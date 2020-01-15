@@ -89,16 +89,18 @@ Mnetwork=checkMnetwork(G);
 elseif auto==1
     Mnetwork=0;
 end
-
+siph1=1;
 fprintf(file,'Necessary Condition # 1 ....\n');
 if siphons==0
    fprintf(file,'The critical siphon necessary condition is satisfied.\n') ;
 elseif deadlock==1
      fprintf(file,'There is a critical deadlock. A PWL RLF cannot exist.\n') ;
+     siph1=0;
      elseif conservative==1 && Mnetwork==1
      fprintf(file,'This is a conservative M-network with a critical siphon. A PWL RLF cannot exist.\n') ;
+     siph1=0;
      elseif conservative==1
-     fprintf(file,'This is a conservative network with critical siphon. If there exists a positive non-degenerate steady state then a PWL RLF cannot exist.\n'); 
+     fprintf(file,'This is a conservative network with critical siphon. If there exists a positive non-degenerate steady state then a PWL RLF cannot exist.\n');
 else
      fprintf(file,'There is a critical siphon. The necessary condition test is inconclusive but a PWL RLF is unlikely to exist.\n') ;
 end
@@ -133,6 +135,7 @@ else
      %   return;
 end
 
+necessary=siph1*Pmatrix*n1;
 fprintf(file,'--------------------------------\n');
 fprintf(file,'LEARN will search for a PWL RLF\n');
 
@@ -153,7 +156,6 @@ if auto==0
 C=ConstructIterate(G);
 elseif auto==1
    C=ConstructIterate(A,B);
-   C=[];
 end 
     
     if(AS1==1)
@@ -162,14 +164,12 @@ end
            PrintResult2(C,G,conservative,siphons,file);
     end
     
-       if(length(C)>0)
-    %       return;
-       end
+    
   
 
 fprintf(file,'--------------------------------\n');
 fprintf(file,'Method # 3: Linear Programming Method .. \n');
-if(AS1==1)
+if(AS1==1 && necessary~=0)
 fprintf(file,'The parition matrix H is set to the default choice H=the stoichiometry matrix .. \n') ;   
     if auto==0
    [C,cvx,H2]=ConstructLP(G);
@@ -189,7 +189,7 @@ fprintf(file,'The parition matrix H is set to the default choice H=the stoichiom
    end
 
 else
-    fprintf(file,'This method for constructing a PWL RLF has failed.\n')
+    fprintf(file,'This method for constructing a PWL RLF is inconclusive.\n')
 end
 
 
