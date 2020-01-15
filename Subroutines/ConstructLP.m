@@ -36,7 +36,7 @@ V=null(G,'r');
 S=[0:2^ne-1]';
 S= 2*(double(dec2bin(S))-48-0.5);
  options = optimoptions('linprog','Display','off');
-
+ warning off;
 S1=[];
 j=1;jj=1;
 for i=1:2^ne   %%% REMOVING INCONSISTENT SYSTEM OF INEQUALITES
