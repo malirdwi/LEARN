@@ -1,5 +1,11 @@
 function LEARN(varargin)
-addpath('./Subroutines');
+
+if ~exist('constructGraphical','file')
+ if ~exist('coeffP','file')
+        addpath('./Subroutines');
+    end
+ end
+    
 checkToolbox
 file=1;
 if nargin==1
