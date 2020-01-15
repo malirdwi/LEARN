@@ -1,15 +1,8 @@
-function [Q,Xi]=ConstructL1(G,H2)
+function [Q,cvx,H2,Xi]=ConstructL1(G,H2)
 
     checkToolbox
 
-
-    w=1;
-
-
-cvx=0;
-
-    
-
+  cvx=1;
 
   H=[G;H2  ];
 
@@ -79,22 +72,13 @@ end
  
 s=length(find(C>0));
 q=sym('q',[s 1]);
+cvx_solver sedumi
 
- 
-[Z,Z1,Zx,Z1v]=RegNbhd(S1,H);
-
-
- 
- 
-
-
-Z2=Z1;
   cvx_begin quiet
 variable Q(m/2,r)
-variable L(m/2,ne)
-variable L2(m,ne,m)
+variable L(1,ne)
 
-minimize(sum(sum(L)))
+minimize(sum(sum(abs(Q))))
  
  
 subject to
@@ -115,25 +99,16 @@ end
  
 Qf=Q;
 
-if cvx==1
-    L2>=0
-end
 
 Lf=[L;L];
 for j=1:m/2
     
 
-       sum(L(j,:))>=2;
-if w==1
+       sum(L(1,:))>=2;
+
     Q(j,:)==L(1,:)*diag(S1(j,:))*H; 
-else
-   Q(j,:)== L(j,:)*diag(S1(j,:))*H; 
-end
-    
-         Qf(m-j+1,:)=-Q(j,:);  
-    
-     
-     
+  
+          
 end
 
 
@@ -144,20 +119,18 @@ cvx_end
 
 if sum(cvx_status)==sum('Failed')
     Q=[];
+    Xi=[];
     return;
 end
 if sum(cvx_status)==sum('Infeasible')
     Q=[];
+    Xi=[];
     return;
 end
-
-Q=round(Q,5);
-Q=full([Q])/min(abs(Q(find(Q))));
-null(Q,'r');
-
-if length(find(L2<-1e-8))>0
-    cvx=0;
-else
-    cvx=1;
-end
 Xi=L;
+Q=full([Q])/min(abs(Q(find(abs(Q)>1e-5))));
+Q=Q(1:m/2,:);
+ 
+
+
+
