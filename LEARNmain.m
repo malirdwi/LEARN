@@ -1,6 +1,6 @@
 function LEARN(varargin)
 
-if ~exist('constructGraphical','file')
+if ~exist('ConstructGraphical','file')
  if ~exist('coeffP','file')
         addpath('./Subroutines');
     end
