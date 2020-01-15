@@ -1,8 +1,30 @@
-function flag=checkSiphonCondition(G)
+function flag=checkSiphonCondition(varargin)
 
+if nargin==1
+    auto=0;
+G=varargin{1};
+elseif nargin==2
+    A=varargin{1};
+    B=varargin{2};
+    G=B-A;
+     if(max(max(abs(A.*B)))>0)%non-autocatalytic
+        auto=1;
+     else
+         auto=0;
+     end
+    
+else
+        error('Error: Wrong Number of Arguments');
+        return;
+end
 
 file=1;
+if auto==0
 [siphons,deadlock]=checkSiphons(G);
+else
+[siphons,deadlock]=checkSiphons(A,B);
+end
+
 Mnetwork=checkMnetwork(G);
 v=IsConservative(G);
 
