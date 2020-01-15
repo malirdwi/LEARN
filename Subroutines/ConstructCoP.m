@@ -1,4 +1,4 @@
-function [P,cvx,H2]=ConstructCoP(G,varargin)
+function [P,H2]=ConstructCoP(G,varargin)
 checkToolbox
 if nargin>1
 H2=varargin{1};
@@ -7,10 +7,7 @@ else
 end
  warning off;
 
-cvx=1;
-% if nargin>3
-%     cvx=varargin{3};
-% end
+ 
     
 
 
@@ -62,7 +59,7 @@ end
 
 
  % 
-[Z,Z1,Zx,Z1v]=RegNbhd(S1(:,1:3),H(1:3,:));
+[Z,Z1,Zx,Z1v]=RegNbhd(S1,H);
  
 
 
