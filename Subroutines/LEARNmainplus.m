@@ -181,7 +181,7 @@ fprintf(file,'The partition matrix H is set to the default choice H=the stoichio
     if auto==0
    [C,cvx,H2]=ConstructLP(G,[],0,0);
     elseif auto==1
-[C,cvx,H2]=ConstructLPAuto(G,[],0,0);
+[C,cvx,H2]=ConstructLPAuto(A,B,[],0,0);
     end
    if cvx==0
        cvx=checkRLF_quiet(G,round(C,6));
