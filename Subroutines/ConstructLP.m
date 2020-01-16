@@ -126,6 +126,8 @@ for j=1:m
         if(Z1(j,j2))
          (Qf(j,:)-Qf(j2,:)) == L2(j2,bb,j)*diag(S1(j,bb))*H(bb,:);  
         end
+           Q(j,:)== L(j,:)*diag(S1(j,:))*H; 
+
     end
     end
 cvx_end 
