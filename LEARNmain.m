@@ -170,7 +170,7 @@ end
 fprintf(file,'--------------------------------\n');
 fprintf(file,'Method # 3: Linear Programming Method .. \n');
 if(AS1==1)
-fprintf(file,'The parition matrix H is set to the default choice H=the stoichiometry matrix .. \n') ;   
+fprintf(file,'The partition matrix H is set to the default choice H=the stoichiometry matrix .. \n') ;   
     if auto==0
    [C,cvx,H2]=ConstructLP(G);
     elseif auto==1
