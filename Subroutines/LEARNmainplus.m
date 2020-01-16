@@ -22,7 +22,7 @@ else
 end
     
 fprintf(file,'--------------------------------\n');
-fprintf(file,'Welcome to LEARN v1.0, Jan 2020\n');
+fprintf(file,'Welcome to LEARN v1.01, Jan 2020\n');
 fprintf(file,'Developed by M. Ali Al-Radhawi malirdwi@{northeastern.edu,mit.edu,gmail.com}\n\n');
 fprintf(file,'LEARN tries to construct a Robust Lyapunov Function for a given reaction network.\n');
 fprintf(file,'--------------------------------\n');
@@ -101,6 +101,7 @@ else
 end
 
 fprintf(file,'Necessary Condition # 2 ....\n');
+
 if auto==0
 [n1,Q]=SignPatternCheck(G);
 elseif auto==1
@@ -135,9 +136,9 @@ necessary=siph1*Pmatrix*n1;
 if(necessary==0)
     fprintf(file,'--------------------------------\n');
 fprintf(file,'A necessary condition has been violated. A PWL RLF does not exist.\n');
-fprintf(file,'A PWL RLF search is not needed, but the subroutine can continue for demonstration purposes ..\n');
+fprintf(file,'A PWL RLF search is not needed, but the subroutine can continue for demonstrational purposes ..\n');
 x=input('If you want to continue searching enter 0, otherwise enter any number to finish= ');
-%x=1;
+
  if(x~=0)
      fprintf(file,'THE END.\n')
      return;
