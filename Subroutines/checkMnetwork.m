@@ -13,7 +13,15 @@ else
         return;
 end
  
-AS1=IsAS1(G);
+v=IsAS1(G);
+
+if(min(v)>0)
+AS1=1;
+else
+    AS1=0;
+end
+
+
 if AS1==0
     flag=0;
     return;
