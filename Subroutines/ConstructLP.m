@@ -86,13 +86,14 @@ for j=1:m  %%% EXCLUDING RATES WITH MULTIPLE CONFLICTING INPUTS
         
 end
  
- [Z,Z1,Zx,Z1v]=RegNbhd(S1,H);
  
+s=length(find(C>0));
+q=sym('q',[s 1]);
 
  
  cvx_solver sedumi
 
-  cvx_begin  quiet
+  cvx_begin % quiet
 variable Q(m/2,r)
 variable L(m/2,ne)
 variable L2(m,ne,m)
@@ -117,17 +118,18 @@ if cvx==1
 end
 Lf=[L;L];
 for j=1:m/2
-       sum(L(j,:))>=2;  
+       sum(L(j,:))>=2;
+if w==1
+    Q(j,:)==L(1,:)*diag(S1(j,:))*H; 
+else
+   Q(j,:)== L(j,:)*diag(S1(j,:))*H; 
+end   
          Qf(m-j+1,:)=-Q(j,:);  
 end
 for j=1:m
     for j2=j+1:m
         bb=find(abs(sign(S1(j,:)-S1(j2,:)))>0);
-        if(Z1(j,j2))
-         (Qf(j,:)-Qf(j2,:)) == L2(j2,bb,j)*diag(S1(j,bb))*H(bb,:);  
-        end
-           Q(j,:)== L(j,:)*diag(S1(j,:))*H; 
-
+         (Qf(j,:)-Qf(j2,:)) == L2(j2,bb,j)*diag(S1(j,bb))*H(bb,:);        
     end
     end
 cvx_end 
