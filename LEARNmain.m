@@ -174,7 +174,7 @@ fprintf(file,'The partition matrix H is set to the default choice H=the stoichio
     if auto==0
    [C,cvx,H2,Xi]=ConstructLP(G);
     elseif auto==1
-[C,cvx,H2]=ConstructLPAuto(G,[],0,1);
+[C,cvx,H2]=ConstructLPAuto(A,B,[],1,0);
     end
       if cvx==0
        cvx=checkRLF_quiet(G,round(C,6));
@@ -182,17 +182,19 @@ fprintf(file,'The partition matrix H is set to the default choice H=the stoichio
    if cvx==1 || length(C)==0
        PrintResult(round(C,5),G,conservative,siphons,file);
        if(length(C)>0)
-       fprintf(file,'The function is a Sum-of-Currents RLF which can be written also as V(x)= \sum_i xi_i |\dot x_i|,  .. \n') ;   
-       fprintf(file,'where xi=[xi_1 .... xi_n] is given as  .. \n') ;
-       PrintMatrix(Xi/min(abs(Q(find(abs(Xi)>1e-5)))));
+       fprintf(file,'Please note that this function is a Sum-of-Currents RLF which can alternatively be written \n') ;   
+       fprintf(file,'  as V(x)= sum_i xi_i |dot x_i|, where xi=[xi_1 .... xi_n]=   \n') ;
+       PrintMatrix(Xi/min(abs(Xi(find(abs(Xi)>1e-5)))),file);
        end
    else
     fprintf(file,'SUCCESS!! A continuous PWL RLF has been found .. \n') ;   
     fprintf(file,'The set of steady states is Lyapunov stable .. \n')  ;
         fprintf(file,'The coefficient matrix is given as follows .. \n') ;  
         PrintMatrix(round(C,5),file);
+        if(length(H2)>0)
          fprintf(file,'The parititon matrix is given as follows .. \n') ;
-         H
+         PrintMatrix(H2,file);
+        end
    end
 
 else
