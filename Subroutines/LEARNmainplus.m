@@ -135,14 +135,16 @@ necessary=siph1*Pmatrix*n1;
 if(necessary==0)
     fprintf(file,'--------------------------------\n');
 fprintf(file,'A necessary condition has been violated. A PWL RLF does not exist.\n');
-%x=input('If you want to continue searching enter 0, otherwise enter any number to finish= ');
-fprintf(file,'A PWL RLF search is not needed.\n');
-x=1;
-if(x~=0)
-    fprintf(file,'THE END.\n')
-    return;
+fprintf(file,'A PWL RLF search is not needed, but the subroutine can continue for demonstration purposes ..\n');
+x=input('If you want to continue searching enter 0, otherwise enter any number to finish= ');
+%x=1;
+ if(x~=0)
+     fprintf(file,'THE END.\n')
+     return;
+ end
 end
-end
+
+
 fprintf(file,'--------------------------------\n');
 fprintf(file,'LEARN will search for a PWL RLF\n');
 
