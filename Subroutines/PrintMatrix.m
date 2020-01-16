@@ -1,5 +1,5 @@
 function PrintMatrix(C,file)
-%fprintf(file,' [ \n');
+fprintf(file,' [ \n');
        for ii = 1:size(C,1)
            for jj=1:size(C,2)
                if(C(ii,jj)>=0)
@@ -11,4 +11,4 @@ function PrintMatrix(C,file)
            fprintf(file,'\n');
 end
     
-%fprintf(file,' ] \n');
+fprintf(file,' ] \n');
