@@ -7,8 +7,7 @@ file=1;
 
 AS1=IsAS1(G);
 if(AS1==0)
-   % fprintf('This subroutine checks RLFs for networks that have a positive vector in the kernel of the stoichiometri matrix. The given network does not satsify that.');
-    return;
+     return;
 end
 
 C=RemoveRedundant(C);
