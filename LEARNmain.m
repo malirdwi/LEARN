@@ -172,7 +172,7 @@ fprintf(file,'Method # 3: Linear Programming Method .. \n');
 if(AS1==1)
 fprintf(file,'The partition matrix H is set to the default choice H=the stoichiometry matrix .. \n') ;   
     if auto==0
-   [C,cvx,H2]=ConstructLP(G);
+   [C,cvx,H2,Xi]=ConstructLP(G);
     elseif auto==1
 [C,cvx,H2]=ConstructLPAuto(G,[],0,1);
     end
@@ -181,6 +181,11 @@ fprintf(file,'The partition matrix H is set to the default choice H=the stoichio
    end
    if cvx==1 || length(C)==0
        PrintResult(round(C,5),G,conservative,siphons,file);
+       if(length(C)>0)
+       fprintf(file,'The function is a Sum-of-Currents RLF which can be written also as V(x)= \sum_i xi_i |\dot x_i|,  .. \n') ;   
+       fprintf(file,'where xi=[xi_1 .... xi_n] is given as  .. \n') ;
+       PrintMatrix(Xi/min(abs(Q(find(abs(Xi)>1e-5)))));
+       end
    else
     fprintf(file,'SUCCESS!! A continuous PWL RLF has been found .. \n') ;   
     fprintf(file,'The set of steady states is Lyapunov stable .. \n')  ;
