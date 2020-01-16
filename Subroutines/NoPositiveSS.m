@@ -14,7 +14,7 @@ G2=G.*(sign(G-1e-9)+1)/2;
   llq=3;
 while(m<500*n)
     if(length(C(:,1))<m)
-      %  fprintf('SUCCESS at %u th iteration \n',m-1);
+       
         C=RemoveRedundant(C);
         break;
     end
@@ -54,7 +54,7 @@ end
 
 if(length(C(:,1))>=m)
        C=[];
-   %    fprintf('FAILURE WITH %u iterations \n',m-1);
+   
        
 end
 if(rank(C)-rank(G)~=0)
