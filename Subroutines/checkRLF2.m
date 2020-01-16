@@ -1,5 +1,15 @@
  function status=checkRLFV2(G,C)% 
 checkToolbox
+
+fprintf(file,'--------------------------------\n');
+fprintf(file,'Welcome to LEARN v1.01, Jan 2020\n');
+fprintf(file,'Developed by M. Ali Al-Radhawi malirdwi@{northeastern.edu,mit.edu,gmail.com}\n\n');
+fprintf(file,'This subroutine tries to verify if a given function is a Robust Lyapunov Function for a given reaction network.\n');
+fprintf(file,'Rarely, this subroutine faces numerical problems. \n');
+fprintf(file,'If you witness an unexpected output, please use the alternative subroutine checkRLF which uses a different solver.\n');
+fprintf(file,'--------------------------------\n');
+
+
 AS1=IsAS1(G);
 if(AS1==0)
     fprintf('This subroutine checks RLFs for networks that have a positive vector in the kernel of the stoichiometri matrix. The given network does not satsify that.');
