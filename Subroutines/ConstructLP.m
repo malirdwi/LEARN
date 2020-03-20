@@ -129,10 +129,9 @@ end
 for j=1:m
     for j2=j+1:m
         bb=find(abs(sign(S1(j,:)-S1(j2,:)))>0);
-  
+          if(Z(j,j2))
          (Qf(j,:)-Qf(j2,:)) == L2(j2,bb,j)*diag(S1(j,bb))*H(bb,:);  
-    
-         
+        end       
          
     end
     end
